@@ -5,5 +5,23 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
+- task: DotNetCoreCLI@2
+  displayName: "Build"
+  inputs:
+    command: 'build'
+    configuration: 'Release'
+    projects: '**/*.csproj'
+- task: DotNetCoreCLI@2
+  displayName: 'Test'
+  inputs:
+    command: 'test'
+    projects: '**/*.Tests.csproj'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'src/WaniKaniApi/WaniKaniApi.csproj'
+    nobuild: true
+    includesymbols: true
+    versioningScheme: 'byPrereleaseNumber'
 - script: echo Hello, world!
   displayName: 'Hello world'
