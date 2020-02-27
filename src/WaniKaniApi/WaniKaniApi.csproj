@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,17 +10,13 @@
     <Copyright>Copyright Martin Zikmund 2020</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/MartinZikmund/WaniKaniApi-net</PackageProjectUrl>
-    <PackageIcon>wanikani.png</PackageIcon>
+    <PackageIcon>images/wanikani.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/MartinZikmund/WaniKaniApi-net/dev/images/wanikani.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/MartinZikmund/WaniKaniApi-net</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>wanikani, net, netstandard, japanese</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="images/wanikani.png" Pack="true" PackagePath="\" />
-    <None Include="wanikani.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Include="images/wanikani.png" Pack="true" />
   </ItemGroup>
 </Project>
