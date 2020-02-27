@@ -24,6 +24,13 @@ steps:
     nobuild: true
     includesymbols: true    
     versioningScheme: 'byPrereleaseNumber'
+- task: NuGetCommand@2
+  displayName: "Push to NuGet.org"
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.snupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'NuGet.org'
 - task: PublishBuildArtifacts@1
   displayName: "Publish artifacts"
   inputs:
