@@ -19,10 +19,10 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'Pack'
   inputs:
-    command: 'pack'
+    command: 'pack'    
     packagesToPack: 'src/WaniKaniApi/WaniKaniApi.csproj'
     nobuild: true
-    includesymbols: true
+    includesymbols: true    
     versioningScheme: 'byPrereleaseNumber'
 - task: PublishBuildArtifacts@1
   displayName: "Publish artifacts"
