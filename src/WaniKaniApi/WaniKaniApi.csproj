@@ -8,6 +8,8 @@
     <Company>Martin Zikmund</Company>
     <Description>.NET Standard library for the WaniKani.com API</Description>
     <Copyright>Copyright Martin Zikmund 2020</Copyright>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/MartinZikmund/WaniKaniApi-net</PackageProjectUrl>
     <PackageIcon>wanikani.png</PackageIcon>
