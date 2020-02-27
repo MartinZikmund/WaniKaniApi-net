@@ -17,8 +17,13 @@
     <RepositoryUrl>https://github.com/MartinZikmund/WaniKaniApi-net</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>wanikani, net, netstandard, japanese</PackageTags>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <None Include="images/wanikani.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="4.7.1" />
   </ItemGroup>
 </Project>
