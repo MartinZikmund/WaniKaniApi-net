@@ -10,13 +10,13 @@
     <Copyright>Copyright Martin Zikmund 2020</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/MartinZikmund/WaniKaniApi-net</PackageProjectUrl>
-    <PackageIcon>images/wanikani.png</PackageIcon>
+    <PackageIcon>wanikani.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/MartinZikmund/WaniKaniApi-net/dev/images/wanikani.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/MartinZikmund/WaniKaniApi-net</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>wanikani, net, netstandard, japanese</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="images/wanikani.png" Pack="true" />
+    <None Include="images/wanikani.png" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>
