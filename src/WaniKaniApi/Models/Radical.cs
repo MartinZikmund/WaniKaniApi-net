@@ -21,7 +21,7 @@ namespace WaniKaniApi.Models
         /// with an image instead.
         /// </summary>
         [JsonPropertyName("characters")]
-        public string? Characters { get; set; };
+        public string? Characters { get; set; } = null!;
 
         /// <summary>
         /// A collection of images of the radical. See table below for the object structure.
