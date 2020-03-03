@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using WaniKaniApi.Models;
 
 namespace WaniKaniApi.SampleApp
 {
@@ -9,7 +10,7 @@ namespace WaniKaniApi.SampleApp
         {
             var apiKey = Console.ReadLine();
             var client = new WaniKaniClient(apiKey);
-            var user = await client.GetSrsStagesAsync();
+            var radicals = await client.GetCollectionResponseAsync<Radical>("subjects?types=radical");
         }
     }
 }

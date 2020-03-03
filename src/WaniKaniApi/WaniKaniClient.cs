@@ -51,20 +51,20 @@ namespace WaniKaniApi
             await GetObjectResponseAsync<Reset>($"resets/{id}");
 
         public async Task<Reset[]> GetResetsAsync() =>
-            await GetCollectionResponseAsync<Reset>($"resets");
+            await GetCollectionResponseAsync<Reset>($"resets");        
 
-        private async Task<T> GetObjectResponseAsync<T>(string relativeUri)
+        public async Task<T> GetObjectResponseAsync<T>(string relativeUri)
         {
             var response = await _client.GetStringAsync(relativeUri);
             var wrappedResponse = JsonSerializer.Deserialize<WkResponse<T>>(response);
             return wrappedResponse.Data;
         }
 
-        private async Task<T[]> GetCollectionResponseAsync<T>(string relativeUri)
+        public async Task<T[]> GetCollectionResponseAsync<T>(string relativeUri)
         {
             var response = await _client.GetStringAsync(relativeUri);
             var wrappedResponse = JsonSerializer.Deserialize<WkCollectionResponse<T>>(response);
-            return wrappedResponse.Data.ToArray();
+            return wrappedResponse.Data.Select(d=>d.Data).ToArray();
         }
 
         public async Task<ReviewStatistic> GetReviewStatisticAsync(int id) =>

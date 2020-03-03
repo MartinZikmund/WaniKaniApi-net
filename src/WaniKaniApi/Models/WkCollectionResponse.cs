@@ -8,7 +8,7 @@ using WaniKaniApi.Models.Base;
 
 namespace WaniKaniApi.Models
 {
-    public class WkCollectionResponse<T> : WkResponse<List<T>>
+    public class WkCollectionResponse<T> : WkResponse<List<WkResponse<T>>>
     {
         [JsonPropertyName("pages")]
         public WkCollectionPages Pages { get; set; } = null!;
