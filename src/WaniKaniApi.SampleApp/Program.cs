@@ -10,7 +10,6 @@ namespace WaniKaniApi.SampleApp
         {
             var apiKey = Console.ReadLine();
             var client = new WaniKaniClient(apiKey);
-            var radicals = await client.GetCollectionResponseAsync<Radical>("subjects?types=radical");
         }
     }
 }

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace WaniKaniApi.Models
 {
-    public class Vocabulary : SubjectBase
+    public class Vocabulary : Subject
     {
+        public override SubjectType Type => SubjectType.Vocabulary;
+
         /// <summary>
         /// The UTF-8 characters for the subject, including kanji and hiragana.
         /// </summary>

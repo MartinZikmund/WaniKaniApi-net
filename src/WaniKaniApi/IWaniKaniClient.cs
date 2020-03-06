@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WaniKaniApi.Api;
 using WaniKaniApi.Models;
 using WaniKaniApi.Models.Users;
 
@@ -10,18 +11,26 @@ namespace WaniKaniApi
 {
     public interface IWaniKaniClient
     {
-        Task<User> GetUserAsync();
+        IAssignmentsApi Assignments { get; }
 
-        Task<ReviewStatistic> GetReviewStatisticAsync(int id);
+        ILevelProgressionsApi LevelProgressions { get; }
 
-        Task<ReviewStatistic[]> GetReviewStatisticsAsync();
+        IUsersApi Users { get; }
 
-        Task<Reset> GetResetAsync(int id);
+        IReviewsApi Reviews { get; }
 
-        Task<Reset[]> GetResetsAsync();
+        IReviewStatisticsApi ReviewStatistics { get; }
 
-        Task<SrsStage[]> GetSrsStagesAsync(); 
+        IResetsApi Resets { get; }
 
-        Task<User> UpdateUserPreferencesAsync(Preferences preferences);
+        ISrsStagesApi SrsStages { get; }
+
+        IStudyMaterialsApi StudyMaterials { get; }
+
+        ISubjectsApi Subjects { get; }
+
+        ISummaryApi Summary { get; }
+
+        IVoiceActorsApi VoiceActors { get; }
     }
 }

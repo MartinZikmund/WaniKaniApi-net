@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace WaniKaniApi.Models
 {
-    public abstract class SubjectBase
+    public abstract class Subject
     {
+        public abstract SubjectType Type { get; }
+
         /// <summary>
         /// Timestamp when the subject was created.
         /// </summary>

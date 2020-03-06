@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using WaniKaniApi.Api;
 using WaniKaniApi.Models;
 using WaniKaniApi.Models.Base;
 using WaniKaniApi.Models.Users;
@@ -28,51 +29,40 @@ namespace WaniKaniApi
                     Authorization = new AuthenticationHeaderValue("Bearer", _apiKey)
                 },
             };
+
+            Assignments = new AssignmentsApi(_client);
+            Users = new UsersApi(_client);
+            Resets = new ResetsApi(_client);
+            LevelProgressions = new LevelProgressionsApi(_client);
+            Reviews = new ReviewsApi(_client);
+            ReviewStatistics = new ReviewStatisticsApi(_client);
+            Subjects = new SubjectsApi(_client);
+            Summary = new SummaryApi(_client);
+            SrsStages = new SrsStagesApi(_client);
+            StudyMaterials = new StudyMaterialsApi(_client);
+            VoiceActors = new VoiceActorsApi(_client);
         }
 
-        public async Task<SrsStage[]> GetSrsStagesAsync() => 
-            await GetCollectionResponseAsync<SrsStage>("srs_stages");
+        public IAssignmentsApi Assignments { get; }
 
-        public async Task<User> GetUserAsync() => 
-            await GetObjectResponseAsync<User>("user");
+        public IUsersApi Users { get; }
 
-        public async Task<User> UpdateUserPreferencesAsync(Preferences preferences)
-        {
-            var user = new User() { Preferences = preferences };
-            var serialized = JsonSerializer.Serialize(user);
-            var content = new StringContent(serialized, Encoding.UTF8, "application/json");
-            var response = await _client.PutAsync("user", content);
-            var stringResponse = await response.Content.ReadAsStringAsync();
-            var wrappedResponse = JsonSerializer.Deserialize<WkResponse<User>>(stringResponse);
-            return wrappedResponse.Data;
-        }
+        public IReviewStatisticsApi ReviewStatistics { get; }
 
-        public async Task<Reset> GetResetAsync(int id) =>
-            await GetObjectResponseAsync<Reset>($"resets/{id}");
+        public ILevelProgressionsApi LevelProgressions { get; }
 
-        public async Task<Reset[]> GetResetsAsync() =>
-            await GetCollectionResponseAsync<Reset>($"resets");        
+        public IResetsApi Resets { get; }
 
-        public async Task<T> GetObjectResponseAsync<T>(string relativeUri)
-        {
-            var response = await _client.GetStringAsync(relativeUri);
-            var wrappedResponse = JsonSerializer.Deserialize<WkResponse<T>>(response);
-            return wrappedResponse.Data;
-        }
+        public ISrsStagesApi SrsStages { get; }
 
-        public async Task<T[]> GetCollectionResponseAsync<T>(string relativeUri)
-        {
-            var response = await _client.GetStringAsync(relativeUri);
-            var wrappedResponse = JsonSerializer.Deserialize<WkCollectionResponse<T>>(response);
-            return wrappedResponse.Data.Select(d=>d.Data).ToArray();
-        }
+        public IStudyMaterialsApi StudyMaterials { get; }
 
-        public async Task<ReviewStatistic> GetReviewStatisticAsync(int id) =>
-            await GetObjectResponseAsync<ReviewStatistic>($"review_statistics/{id}");
+        public ISubjectsApi Subjects { get; }
 
-        public Task<ReviewStatistic[]> GetReviewStatisticsAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public ISummaryApi Summary { get; }
+
+        public IVoiceActorsApi VoiceActors { get; }
+
+        public IReviewsApi Reviews { get; }
     }
 }

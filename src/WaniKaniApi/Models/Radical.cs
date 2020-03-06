@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace WaniKaniApi.Models
 {
-    public class Radical : SubjectBase
+    public class Radical : Subject
     {
+        public override SubjectType Type => SubjectType.Radical;
+
         /// <summary>
         /// An array of numeric identifiers for the kanji that have the radical as a component.
         /// </summary>
@@ -28,5 +30,6 @@ namespace WaniKaniApi.Models
         /// </summary>
         [JsonPropertyName("character_images")]
         public List<CharacterImage> CharacterImages { get; set; } = new List<CharacterImage>();
+
     }
 }
