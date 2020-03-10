@@ -12,6 +12,8 @@ namespace WaniKaniApi.Api
 {
     public abstract class ApiBase
     {
+        private const string JsonContentType = "application/json";
+
         public ApiBase(HttpClient client)
         {
             Client = client;
@@ -31,6 +33,30 @@ namespace WaniKaniApi.Api
             var response = await Client.GetStringAsync(relativeUri);
             var wrappedResponse = JsonSerializer.Deserialize<WkCollectionResponse<T>>(response);
             return wrappedResponse.Data.Select(d => d.Data).ToArray();
+        }
+
+        protected async Task<T> ReadObjectResponseAsync<T>(HttpResponseMessage response)
+        {
+            var serializedResponse = await response.Content.ReadAsStringAsync();
+            var wrappedResponse = JsonSerializer.Deserialize<WkResponse<T>>(serializedResponse);
+            return wrappedResponse.Data;
+        }
+
+        public async Task<IPagedCollection<T>> ReadPagedResponseAsync<T>(HttpResponseMessage response)
+        {
+            var serializedResponse = await response.Content.ReadAsStringAsync();
+            var wrappedResponse = JsonSerializer.Deserialize<WkCollectionResponse<T>>(serializedResponse);
+            return new PagedCollection<T>(
+                wrappedResponse.Data.Select(d => d.Data).ToArray(),
+                wrappedResponse.Pages,
+                wrappedResponse.TotalCount);
+        }
+
+        protected HttpContent CreateJsonContent<T>(T data)
+            where T : class?
+        {
+            string json = data != null ? JsonSerializer.Serialize(data) : string.Empty;
+            return new StringContent(json, Encoding.UTF8, JsonContentType);
         }
     }
 }
