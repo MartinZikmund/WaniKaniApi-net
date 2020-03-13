@@ -7,14 +7,15 @@ using WaniKaniApi.Attributes;
 
 namespace WaniKaniApi.Models.Filters
 {
-    public class LevelProgressionsFilter
+    [Preserve(AllMembers = true)]
+    public class LevelProgressionsFilter : FilterBase
     {
         /// <summary>
         /// Only level progressions where data.id 
         /// matches one of the array values are returned.
         /// </summary>
         [QueryStringName("ids")]
-        public List<int> Ids { get; set; }
+        public int[]? Ids { get; set; }
 
         /// <summary>
         /// Only level_progressions updated after this time are returned.

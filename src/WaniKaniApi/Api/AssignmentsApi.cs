@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using WaniKaniApi.Models;
 using WaniKaniApi.Models.Filters;
@@ -18,6 +13,9 @@ namespace WaniKaniApi.Api
         {
         }
 
+        public async Task<IPagedCollection<Assignment>> GetAllAsync(Uri pageUrl) =>
+            await GetPagedResponseAsync<Assignment>(pageUrl);        
+
         public Task<Assignment> GetAsync(int id) => GetObjectResponseAsync<Assignment>($"assignments/{id}");
 
         public async Task<Assignment> StartAsync(int id, DateTimeOffset? startedAt = null)
@@ -30,10 +28,7 @@ namespace WaniKaniApi.Api
             return await ReadObjectResponseAsync<Assignment>(response);
         }
 
-        Task<IPagedCollection<Assignment>> GetAllAsync(AssignmentsFilter? filter)
-        {
-            var content = CreateJsonContent(filter);
-            var url = CreateQuery(filter);
-        }
+        public async Task<IPagedCollection<Assignment>> GetAllAsync(AssignmentsFilter? filter) =>
+            await GetPagedResponseAsync<Assignment>("assignments", filter);
     }
 }

@@ -20,14 +20,13 @@ namespace WaniKaniApi.Api
             throw new NotImplementedException();
         }
 
-        public Task<Review[]> GetAllAsync(ReviewsFilter? filter = null)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IPagedCollection<Review>> GetAllAsync(ReviewsFilter? filter = null) =>
+            await GetPagedResponseAsync<Review>("reviews", filter);
 
-        public Task<Review> GetAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IPagedCollection<Review>> GetAllAsync(Uri pageUrl) =>
+            await GetPagedResponseAsync<Review>(pageUrl);
+
+        public async Task<Review> GetAsync(int id) =>
+            await GetObjectResponseAsync<Review>($"reviews/{id}");
     }
 }

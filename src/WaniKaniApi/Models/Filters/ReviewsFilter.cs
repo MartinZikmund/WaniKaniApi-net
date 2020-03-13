@@ -7,7 +7,8 @@ using WaniKaniApi.Attributes;
 
 namespace WaniKaniApi.Models.Filters
 {
-    public class ReviewsFilter
+    [Preserve(AllMembers = true)]
+    public class ReviewsFilter : FilterBase
     {
         [QueryStringName("assignment_ids")]
         public List<int>? AssignmentIds { get; set; }

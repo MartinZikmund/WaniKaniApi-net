@@ -9,13 +9,60 @@ using WaniKaniApi.Attributes;
 
 namespace WaniKaniApi.Models.Filters
 {
-    internal abstract class FilterBase : IFilter
+    public abstract class FilterBase : IFilter
     {
+        public string BuildQueryString()
+        {
+            var properties = GetType().GetProperties();
+            List<string> queryStringParts = new List<string>();
+            foreach (var property in properties)
+            {
+                var queryStringPart = GetPropertyQueryString(property);
+                if (!string.IsNullOrEmpty(queryStringPart))
+                {
+                    queryStringParts.Add(queryStringPart);
+                }
+            }
+            if (queryStringParts.Count > 0)
+            {
+                return $"?{string.Join("&", queryStringParts)}";
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
         internal string GetPropertyQueryString(PropertyInfo propertyInfo)
         {
             var value = propertyInfo.GetValue(this);
-            var name = propertyInfo.GetCustomAttribute<QueryStringNameAttribute>().Name;
-            
+            var attribute = propertyInfo.GetCustomAttribute<QueryStringNameAttribute>();
+            if (attribute == null || value == null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                var name = attribute.Name;
+                return $"{name}={SerializeValue(value)}";
+            }
+        }
+
+        private string SerializeValue(object value)
+        {
+            switch (value)
+            {
+                case IEnumerable<int> intValues:
+                    {
+                        return string.Join(",", intValues.Select(i=>i.ToString()));                        
+                    }
+                case DateTimeOffset dateTimeOffset:
+                    {
+                        return dateTimeOffset.ToString("o");
+                    }
+                default:
+                    return Uri.EscapeDataString(value.ToString());
+            }
         }
     }
 }

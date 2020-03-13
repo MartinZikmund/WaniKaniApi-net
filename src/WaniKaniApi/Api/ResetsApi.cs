@@ -17,7 +17,10 @@ namespace WaniKaniApi.Api
         public async Task<Reset> GetAsync(int id) =>
             await GetObjectResponseAsync<Reset>($"resets/{id}");
 
-        public async Task<Reset[]> GetAllAsync() =>
-            await GetCollectionResponseAsync<Reset>($"resets");
+        public async Task<IPagedCollection<Reset>> GetAllAsync() =>
+            await GetPagedResponseAsync<Reset>("resets");
+
+        public async Task<IPagedCollection<Reset>> GetAllAsync(Uri pageUrl) =>
+            await GetPagedResponseAsync<Reset>(pageUrl);
     }
 }

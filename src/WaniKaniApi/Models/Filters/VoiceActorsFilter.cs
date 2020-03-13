@@ -10,7 +10,8 @@ namespace WaniKaniApi.Models.Filters
     /// <summary>
     /// The collection of voice_actors will be filtered on the parameters provided.
     /// </summary>
-    public class VoiceActorsFilter
+    [Preserve(AllMembers = true)]
+    public class VoiceActorsFilter : FilterBase
     {
         /// <summary>
         /// Only voice_actors where data.id matches 

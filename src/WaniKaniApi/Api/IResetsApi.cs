@@ -11,6 +11,8 @@ namespace WaniKaniApi.Api
     {
         Task<Reset> GetAsync(int id);
 
-        Task<Reset[]> GetAllAsync();
+        Task<IPagedCollection<Reset>> GetAllAsync();
+
+        Task<IPagedCollection<Reset>> GetAllAsync(Uri pageUrl);        
     }
 }

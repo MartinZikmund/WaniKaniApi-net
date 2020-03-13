@@ -12,7 +12,7 @@ namespace WaniKaniApi.Api
     {
         Task<IPagedCollection<Assignment>> GetAllAsync(AssignmentsFilter? filter = null);
 
-        Task<IPagedCollection<Assignment>> GetAllAsync(Uri? pageUrl = null);
+        Task<IPagedCollection<Assignment>> GetAllAsync(Uri pageUrl);
 
         Task<Assignment> GetAsync(int id);
 

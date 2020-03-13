@@ -4,7 +4,8 @@ using WaniKaniApi.Attributes;
 
 namespace WaniKaniApi.Models.Filters
 {
-    public class StudyMaterialsFilter
+    [Preserve(AllMembers = true)]
+    public class StudyMaterialsFilter : FilterBase
     {
         /// <summary>
         /// Return study materials with a matching 

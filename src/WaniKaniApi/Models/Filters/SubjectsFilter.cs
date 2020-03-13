@@ -10,7 +10,8 @@ namespace WaniKaniApi.Models.Filters
     /// <summary>
     /// The collection of subjects will be filtered on the parameters provided.
     /// </summary>
-    public class SubjectsFilter
+    [Preserve(AllMembers = true)]
+    public class SubjectsFilter : FilterBase
     {
         /// <summary>
         /// Only subjects where data.id matches one of the array values are returned.

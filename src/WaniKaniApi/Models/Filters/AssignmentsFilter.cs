@@ -9,7 +9,8 @@ namespace WaniKaniApi.Models.Filters
     /// The collection of assignments will be filtered on the parameters provided.
     /// Properties default to null - filter not used.
     /// </summary>
-    public class AssignmentsFilter : IFilter
+    [Preserve(AllMembers = true)]
+    public class AssignmentsFilter : FilterBase
     {
         /// <summary>
         /// Only assignments available at or after this time are returned.
@@ -117,10 +118,5 @@ namespace WaniKaniApi.Models.Filters
         /// </summary>
         [QueryStringName("updated_after")]
         public DateTimeOffset? UpdatedAfter { get; set; }
-
-        string IFilter.BuildQueryString()
-        {
-            
-        }
     }
 }

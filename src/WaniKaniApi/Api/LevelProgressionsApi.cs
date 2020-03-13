@@ -15,14 +15,12 @@ namespace WaniKaniApi.Api
         {
         }
 
-        public Task<LevelProgression[]> GetAllAsync(LevelProgressionsFilter? filter = null)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<PagedCollection<LevelProgression>> GetAllAsync(Uri pageUrl) =>
+            await GetPagedResponseAsync(pageUrl);
 
-        public Task<LevelProgression> GetAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<LevelProgression> GetAsync(int id) => GetObjectResponseAsync<LevelProgression>($"level_progressions/{id}");
+
+        public async Task<IPagedCollection<LevelProgression>> GetAllAsync(LevelProgressionsFilter? filter) =>
+            await GetPagedResponseAsync("level_progressions", filter);
     }
 }

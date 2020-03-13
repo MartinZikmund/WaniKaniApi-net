@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WaniKaniApi.Models;
 using WaniKaniApi.Models.Base;
+using WaniKaniApi.Models.Filters;
 
 namespace WaniKaniApi.Api
 {
@@ -50,6 +51,19 @@ namespace WaniKaniApi.Api
                 wrappedResponse.Data.Select(d => d.Data).ToArray(),
                 wrappedResponse.Pages,
                 wrappedResponse.TotalCount);
+        }
+
+        protected async Task<IPagedCollection<T>> GetPagedResponseAsync<T>(string relativeUri, IFilter? filter = null)
+        {
+            var queryString = filter?.BuildQueryString() ?? string.Empty;
+            var response = await Client.GetAsync($"level_progressions{queryString}");
+            return await ReadPagedResponseAsync<T>(response);
+        }
+        
+        protected async Task<IPagedCollection<T>> GetPagedResponseAsync<T>(Uri pageUrl)
+        {
+            var response = await Client.GetAsync(pageUrl);
+            return await ReadPagedResponseAsync<T>(response);
         }
 
         protected HttpContent CreateJsonContent<T>(T data)

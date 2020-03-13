@@ -10,7 +10,9 @@ namespace WaniKaniApi.Api
 {
     public interface IReviewsApi
     {
-        Task<Review[]> GetAllAsync(ReviewsFilter? filter = null);
+        Task<IPagedCollection<Review>> GetAllAsync(ReviewsFilter? filter = null);
+
+        Task<IPagedCollection<Review>> GetAllAsync(Uri pageUrl);
 
         Task<Review> GetAsync(int id);
 

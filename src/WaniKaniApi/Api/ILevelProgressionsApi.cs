@@ -10,7 +10,9 @@ namespace WaniKaniApi.Api
 {
     public interface ILevelProgressionsApi
     {
-        Task<LevelProgression[]> GetAllAsync(LevelProgressionsFilter? filter = null);
+        Task<IPagedCollection<LevelProgression>> GetAllAsync(LevelProgressionsFilter? filter = null);
+
+        Task<IPagedCollection<LevelProgression>> GetAllAsync(Uri pageUri);
 
         Task<LevelProgression> GetAsync(int id);
     }
