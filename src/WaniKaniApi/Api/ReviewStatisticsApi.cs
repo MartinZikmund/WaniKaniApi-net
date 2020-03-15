@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using WaniKaniApi.Models;
+using WaniKaniApi.Models.Filters;
 
 namespace WaniKaniApi.Api
 {
@@ -17,10 +18,10 @@ namespace WaniKaniApi.Api
         public async Task<ReviewStatistic> GetReviewStatisticAsync(int id) =>
           await GetObjectResponseAsync<ReviewStatistic>($"review_statistics/{id}");
 
-        public Task<ReviewStatistic[]> GetReviewStatisticsAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IPagedCollection<ReviewStatistic>> GetReviewStatisticsAsync(ReviewStatisticsFilter? filter = null) =>
+            await GetPagedResponseAsync<ReviewStatistic>($"review_statistics", filter);
 
+        public async Task<IPagedCollection<ReviewStatistic>> GetReviewStatisticsAsync(Uri pageUrl) =>
+            await GetPagedResponseAsync<ReviewStatistic>(pageUrl);
     }
 }

@@ -14,9 +14,7 @@ namespace WaniKaniApi.Api
         {
         }
 
-        public Task<Summary> GetAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Summary> GetAsync() =>
+            await GetObjectResponseAsync<Summary>("summary");
     }
 }

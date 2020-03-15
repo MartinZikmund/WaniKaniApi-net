@@ -15,14 +15,13 @@ namespace WaniKaniApi.Api
         {
         }
 
-        public Task<StudyMaterial[]> GetAllAsync(StudyMaterialsFilter? filter = null)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<StudyMaterial> GetAsync(int id) =>
+            await GetObjectResponseAsync<StudyMaterial>("study_materials");
 
-        public Task<StudyMaterial> GetAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IPagedCollection<StudyMaterial>> GetAllAsync(StudyMaterialsFilter? filter = null) =>
+            await GetPagedResponseAsync<StudyMaterial>("study_materials", filter);
+
+        public async Task<IPagedCollection<StudyMaterial>> GetAllAsync(Uri pageUrl) =>
+            await GetPagedResponseAsync<StudyMaterial>(pageUrl);
     }
 }

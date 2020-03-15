@@ -22,8 +22,7 @@ namespace WaniKaniApi.Api
         public async Task<Preferences> UpdatePreferencesAsync(Preferences preferences)
         {
             var user = new User() { Preferences = preferences };
-            var serialized = JsonSerializer.Serialize(user);
-            var content = new StringContent(serialized, Encoding.UTF8, "application/json");
+            var content = CreateJsonContent(user);
             var response = await Client.PutAsync("user", content);
             var stringResponse = await response.Content.ReadAsStringAsync();
             var wrappedResponse = JsonSerializer.Deserialize<WkResponse<User>>(stringResponse);

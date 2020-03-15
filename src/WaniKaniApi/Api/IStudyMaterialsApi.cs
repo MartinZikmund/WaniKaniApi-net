@@ -10,7 +10,9 @@ namespace WaniKaniApi.Api
 {
     public interface IStudyMaterialsApi
     {
-        Task<StudyMaterial[]> GetAllAsync(StudyMaterialsFilter? filter = null);
+        Task<IPagedCollection<StudyMaterial>> GetAllAsync(StudyMaterialsFilter? filter = null);
+
+        Task<IPagedCollection<StudyMaterial>> GetAllAsync(Uri pageUrl);
 
         Task<StudyMaterial> GetAsync(int id);
     }

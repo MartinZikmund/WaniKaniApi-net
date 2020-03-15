@@ -15,7 +15,9 @@ namespace WaniKaniApi.Api
         /// </summary>
         /// <param name="filter">Filter.</param>
         /// <returns>Subjects.</returns>
-        Task<Subject[]> GetAllAsync(SubjectsFilter? filter = null);
+        Task<IPagedCollection<Subject>> GetAllAsync(SubjectsFilter? filter = null);
+
+        Task<IPagedCollection<Subject>> GetAllAsync(Uri pageUrl);
 
         /// <summary>
         /// Retrieves a specific subject by its id.

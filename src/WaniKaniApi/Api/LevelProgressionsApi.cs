@@ -15,12 +15,12 @@ namespace WaniKaniApi.Api
         {
         }
 
-        public async Task<PagedCollection<LevelProgression>> GetAllAsync(Uri pageUrl) =>
-            await GetPagedResponseAsync(pageUrl);
+        public async Task<IPagedCollection<LevelProgression>> GetAllAsync(Uri pageUrl) =>
+            await GetPagedResponseAsync<LevelProgression>(pageUrl);
 
         public Task<LevelProgression> GetAsync(int id) => GetObjectResponseAsync<LevelProgression>($"level_progressions/{id}");
 
         public async Task<IPagedCollection<LevelProgression>> GetAllAsync(LevelProgressionsFilter? filter) =>
-            await GetPagedResponseAsync("level_progressions", filter);
+            await GetPagedResponseAsync<LevelProgression>("level_progressions", filter);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using WaniKaniApi.Models;
@@ -15,14 +16,13 @@ namespace WaniKaniApi.Api
         {
         }
 
-        public Task<VoiceActor[]> GetAllAsync(VoiceActorsFilter filter = null)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IPagedCollection<VoiceActor>> GetAllAsync(VoiceActorsFilter? filter = null) =>
+            await GetPagedResponseAsync<VoiceActor>("voice_actors", filter);
 
-        public Task<VoiceActor> GetAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IPagedCollection<VoiceActor>> GetAllAsync(Uri pageUrl) =>
+            await GetPagedResponseAsync<VoiceActor>(pageUrl);
+
+        public async Task<VoiceActor> GetAsync(int id) =>
+            await GetObjectResponseAsync<VoiceActor>($"voice_actors/{id}");
     }
 }

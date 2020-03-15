@@ -10,7 +10,9 @@ namespace WaniKaniApi.Api
 {
     public interface IVoiceActorsApi
     {
-        Task<VoiceActor[]> GetAllAsync(VoiceActorsFilter filter = null);
+        Task<IPagedCollection<VoiceActor>> GetAllAsync(VoiceActorsFilter? filter = null);
+
+        Task<IPagedCollection<VoiceActor>> GetAllAsync(Uri pageUrl);
 
         Task<VoiceActor> GetAsync(int id);
     }

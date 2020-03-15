@@ -29,21 +29,21 @@ namespace WaniKaniApi.Api
             return wrappedResponse.Data;
         }
 
-        public async Task<T[]> GetCollectionResponseAsync<T>(string relativeUri)
+        internal async Task<T[]> GetCollectionResponseAsync<T>(string relativeUri)
         {
             var response = await Client.GetStringAsync(relativeUri);
             var wrappedResponse = JsonSerializer.Deserialize<WkCollectionResponse<T>>(response);
             return wrappedResponse.Data.Select(d => d.Data).ToArray();
         }
 
-        protected async Task<T> ReadObjectResponseAsync<T>(HttpResponseMessage response)
+        internal async Task<T> ReadObjectResponseAsync<T>(HttpResponseMessage response)
         {
             var serializedResponse = await response.Content.ReadAsStringAsync();
             var wrappedResponse = JsonSerializer.Deserialize<WkResponse<T>>(serializedResponse);
             return wrappedResponse.Data;
         }
 
-        public async Task<IPagedCollection<T>> ReadPagedResponseAsync<T>(HttpResponseMessage response)
+        internal async Task<IPagedCollection<T>> ReadPagedResponseAsync<T>(HttpResponseMessage response)
         {
             var serializedResponse = await response.Content.ReadAsStringAsync();
             var wrappedResponse = JsonSerializer.Deserialize<WkCollectionResponse<T>>(serializedResponse);
@@ -53,14 +53,14 @@ namespace WaniKaniApi.Api
                 wrappedResponse.TotalCount);
         }
 
-        protected async Task<IPagedCollection<T>> GetPagedResponseAsync<T>(string relativeUri, IFilter? filter = null)
+        internal async Task<IPagedCollection<T>> GetPagedResponseAsync<T>(string relativeUri, IFilter? filter = null)
         {
             var queryString = filter?.BuildQueryString() ?? string.Empty;
             var response = await Client.GetAsync($"level_progressions{queryString}");
             return await ReadPagedResponseAsync<T>(response);
         }
-        
-        protected async Task<IPagedCollection<T>> GetPagedResponseAsync<T>(Uri pageUrl)
+
+        internal async Task<IPagedCollection<T>> GetPagedResponseAsync<T>(Uri pageUrl)
         {
             var response = await Client.GetAsync(pageUrl);
             return await ReadPagedResponseAsync<T>(response);
