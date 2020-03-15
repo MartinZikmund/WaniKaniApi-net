@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -52,13 +53,13 @@ namespace WaniKaniApi.Models.Filters
         {
             switch (value)
             {
-                case IEnumerable<int> intValues:
+                case IEnumerable enumerable:
                     {
-                        return string.Join(",", intValues.Select(i=>i.ToString()));                        
+                        return string.Join(",", enumerable.OfType<object>().Select(o=>o.ToString().ToLowerInvariant()));
                     }
                 case DateTimeOffset dateTimeOffset:
                     {
-                        return dateTimeOffset.ToString("o");
+                        return dateTimeOffset.DateTime.ToString("o");
                     }
                 default:
                     return Uri.EscapeDataString(value.ToString());

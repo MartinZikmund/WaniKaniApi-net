@@ -10,6 +10,7 @@ namespace WaniKaniApi.SampleApp
         {
             var apiKey = Console.ReadLine();
             var client = new WaniKaniClient(apiKey);
+            var subjects = await client.Subjects.GetAllAsync(new Models.Filters.SubjectsFilter() { Types = new SubjectType[] { SubjectType.Kanji, SubjectType.Vocabulary } });
         }
     }
 }

@@ -17,25 +17,25 @@ namespace WaniKaniApi.Models.Filters
         /// Only subjects where data.id matches one of the array values are returned.
         /// </summary>
         [QueryStringName("ids")]
-        public List<int>? Ids { get; set; } = new List<int>();
+        public int[]? Ids { get; set; }
 
         /// <summary>
         /// Return subjects of the specified types.
         /// </summary>
         [QueryStringName("types")]
-        public List<SubjectType>? Types { get; set; } = new List<SubjectType>();
+        public SubjectType[]? Types { get; set; }
 
         /// <summary>
         /// Return subjects of the specified slug.
         /// </summary>
         [QueryStringName("slugs")]
-        public List<string>? Slugs { get; set; } = new List<string>();
+        public string[]? Slugs { get; set; }
 
         /// <summary>
         /// Return subjects at the specified levels.
         /// </summary>
         [QueryStringName("levels")]
-        public List<int>? Levels { get; set; } = new List<int>();
+        public int[]? Levels { get; set; }
 
         /// <summary>
         /// Return subjects which are or are not hidden from the user-facing application.

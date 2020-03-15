@@ -18,7 +18,7 @@ namespace WaniKaniApi.Models.Filters
         /// one of the array values are returned.
         /// </summary>
         [QueryStringName("ids")]
-        public List<int>? Ids { get; set; } = new List<int>();
+        public int[]? Ids { get; set; }
 
         /// <summary>
         /// Only voice_actors updated after this time are returned.

@@ -41,7 +41,7 @@ namespace WaniKaniApi.Models.Filters
         /// Only assignments where data.id matches one of the array values are returned.
         /// </summary>
         [QueryStringName("ids")]
-        public List<int>? Ids { get; set; } = new List<int>();
+        public int[]? Ids { get; set; }
 
         /// <summary>
         /// Returns assignments which are immediately available for lessons
@@ -69,7 +69,7 @@ namespace WaniKaniApi.Models.Filters
         /// range from 1 to 60.
         /// </summary>
         [QueryStringName("levels")]
-        public List<int>? Levels { get; set; } = new List<int>();
+        public int[]? Levels { get; set; }
 
         /// <summary>
         /// Returns assignments where data.passed equals passed.
@@ -82,7 +82,7 @@ namespace WaniKaniApi.Models.Filters
         /// values are returned. Valid values range from 0 to 9.
         /// </summary>
         [QueryStringName("srs_stages")]
-        public List<int>? SrsStages { get; set; } = new List<int>();
+        public int[]? SrsStages { get; set; }
 
         /// <summary>
         /// When set to true, returns assignments that have a value in 
@@ -97,14 +97,14 @@ namespace WaniKaniApi.Models.Filters
         /// one of the array values are returned.
         /// </summary>
         [QueryStringName("subject_ids")]
-        public List<int>? SubjectIds { get; set; } = new List<int>();
+        public int[]? SubjectIds { get; set; }
 
         /// <summary>
         /// Only assignments where data.subject_type matches one of the array 
         /// values are returned. Valid values are: radical, kanji, or vocabulary.
         /// </summary>
         [QueryStringName("subject_types")]
-        public List<SubjectType>? SubjectTypes { get; set; } = new List<SubjectType>();
+        public SubjectType[]? SubjectTypes { get; set; }
 
         /// <summary>
         /// When set to true, returns assignments that have a value in data.unlocked_at. 
