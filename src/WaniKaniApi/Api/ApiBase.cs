@@ -80,6 +80,6 @@ namespace WaniKaniApi.Api
         {
             string json = data != null ? JsonSerializer.Serialize(data, _defaultSerializerOptions) : string.Empty;
             return new StringContent(json, Encoding.UTF8, JsonContentType);
-        }
+        }     
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using WaniKaniApi.Api;
+using WaniKaniApi.Http;
 using WaniKaniApi.Models;
 using WaniKaniApi.Models.Base;
 using WaniKaniApi.Models.Users;
@@ -22,7 +23,7 @@ namespace WaniKaniApi
         public WaniKaniClient(string apiKey)
         {
             _apiKey = apiKey;
-            _client = new HttpClient()
+            _client = new HttpClient(new WaniKaniHttpClientHandler())
             {
                 BaseAddress = new Uri("https://api.wanikani.com/v2/"),
                 DefaultRequestHeaders = {

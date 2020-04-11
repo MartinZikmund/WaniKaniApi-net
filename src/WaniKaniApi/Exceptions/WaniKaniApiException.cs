@@ -10,16 +10,19 @@ namespace WaniKaniApi.Exceptions
     [Serializable]
     public class WaniKaniApiException : Exception
     {
-        public WaniKaniApiException()
+        public WaniKaniApiException(WaniKaniErrorType errorType)
         {
+            ErrorType = errorType;
         }
 
-        public WaniKaniApiException(string message) : base(message)
+        public WaniKaniApiException(WaniKaniErrorType errorType, string message) : base(message)
         {
+            ErrorType = errorType;
         }
 
-        public WaniKaniApiException(string message, Exception inner) : base(message, inner)
+        public WaniKaniApiException(WaniKaniErrorType errorType, string message, Exception inner) : base(message, inner)
         {
+            ErrorType = errorType;
         }
 
         protected WaniKaniApiException(
@@ -27,5 +30,7 @@ namespace WaniKaniApi.Exceptions
             StreamingContext context) : base(info, context)
         {
         }
+
+        public WaniKaniErrorType ErrorType { get; }
     }
 }
